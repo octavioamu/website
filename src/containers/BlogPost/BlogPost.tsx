@@ -120,6 +120,8 @@ const Croppit = styled.div`
 `;
 const BlogImage = styled.img`
   width: 100%;
+  object-fit: cover;
+  height: 100%;
 `;
 const ContentContainer = styled.div`
   color: #a5a5a8;
