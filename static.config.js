@@ -138,6 +138,10 @@ export default {
         getData: () => pressData,
       },
       {
+        path: '/presale',
+        component: 'src/containers/Presale'
+      },
+      {
         path: '/blog',
         component: 'src/containers/Blog',
         getData: () => blogData,
