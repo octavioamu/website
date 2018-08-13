@@ -30,7 +30,7 @@ const config: Config = {
     {
       image: partnerProjectImages.Amadeus,
       name: 'Amadeus',
-      url: 'http://www.amadeus.com/'
+      url: 'https://demo.amadeusrelay.org/'
     },
     {
       image: partnerProjectImages.Haven,
