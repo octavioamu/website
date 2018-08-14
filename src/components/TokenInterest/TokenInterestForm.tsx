@@ -40,16 +40,6 @@ const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 
-const investorValidator = (form, rule, value, callback) => {
-  let citizen;
-  let investor;
-  citizen = form.getFieldValue('CITIZEN');
-  investor = form.getFieldValue('ACCRED');
-  if (citizen === 'US' && investor === 'no') {
-    callback('Sorry, this is limited to Accredited Investors');
-  }
-};
-
 class TokenInterestForm extends React.Component<FormComponentProps> {
   postfixSelector = (
     <StyledSelect
@@ -66,9 +56,11 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
       <Option value="BTC">BTC</Option>
     </StyledSelect>
   );
+
   render() {
     const { form } = this.props;
     const { getFieldDecorator } = form;
+
     return (
       <SectionWrapper>
         <Row type="flex" justify="center">
@@ -140,23 +132,9 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
               </FormItem>
               <FormItem label="Are you an accredited investor?">
                 {getFieldDecorator('ACCRED', {
-                  initialValue: 'yes',
-                  rules: [
-                    {
-                      validator: (rule, value, callback) => {
-                        investorValidator(form, rule, value, callback);
-                      }
-                    }
-                  ]
+                  initialValue: 'yes'
                 })(
-                  <RadioGroup
-                    name="ACCRED"
-                    onChange={() => {
-                      setTimeout(() => {
-                        form.validateFields(['ACCRED'], { force: true });
-                      }, 10);
-                    }}
-                  >
+                  <RadioGroup name="ACCRED">
                     <Radio value="yes">Yes</Radio>
                     <Radio value="no">No</Radio>
                   </RadioGroup>
@@ -191,31 +169,24 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
                   />
                 )}
               </FormItem>
-              <FormItem label="Citizenship" validateStatus="success">
+              <FormItem label="Citizenship">
                 {getFieldDecorator('CITIZEN', {
-                  initialValue: 'SELECT COUNTRY',
                   rules: [
                     {
                       message: 'Citizenship is required',
                       required: true
-                    },
-                    {
-                      validator: (rule, value, callback) => {
-                        investorValidator(form, rule, value, callback);
-                      }
                     }
                   ]
                 })(
                   <StyledSelect
+                    placeholder="SELECT COUNTRY"
                     style={{
                       width: 200
                     }}
                     dropdownStyle={{ backgroundColor: '#f6f6f6' }}
                     dropdownMenuStyle={{ backgroundColor: '#f6f6f6' }}
                   >
-                    {countries.map(c => (
-                      <Option key={c.code}>{c.name}</Option>
-                    ))}
+                    {countries.map(c => <Option key={c.code}>{c.name}</Option>)}
                   </StyledSelect>
                 )}
               </FormItem>
