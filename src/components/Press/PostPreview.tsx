@@ -1,13 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Moment from 'react-moment';
-import showdown from 'showdown';
 import { History } from 'history';
 import { device } from '@src/breakpoints';
 
 import SocialLinks from '@components/Blog/SocialLinks';
-
-const converter = new showdown.Converter();
 
 const RootWrap = styled.div`
   width: 100%;
@@ -119,7 +116,7 @@ interface Post {
     author: string;
     category: string;
     published_at: string;
-    medium_link: string;
+    article_link: string;
     thumbnail: string;
     slug: string;
     source: string;
@@ -137,13 +134,13 @@ interface PostPreviewProps {
 
 class PostPreview extends React.Component<PostPreviewProps> {
   render() {
-    const { post, featured, external } = this.props;
+    const { post, featured } = this.props;
 
     if (!post) {
       return null;
     }
 
-    const source = post.data.source;
+    const source = post.data.article_link;
     const goto = () => window.open(source, '_blank');
 
     return (
@@ -157,7 +154,6 @@ class PostPreview extends React.Component<PostPreviewProps> {
             }}
           />
           <div id="blogStats">
-            <div id="blogStatsCategory">{post.data.category}</div>
             <div id="blogStatsTime">
               <Moment format={'MMMM D, YYYY'}>{post.data.published_at}</Moment>
             </div>
@@ -188,7 +184,7 @@ class PostPreview extends React.Component<PostPreviewProps> {
               </div>
             </div>
             <div id="socialLinksWrapper">
-              <SocialLinks slug={source} external={external} />
+              <SocialLinks slug={source} external={true} />
             </div>
           </div>
         </div>

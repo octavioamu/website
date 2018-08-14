@@ -2,7 +2,6 @@ import React from 'react';
 import Moment from 'react-moment';
 import { mount, shallow, ShallowWrapper } from 'enzyme';
 import PostPreview from '@components/Press/PostPreview';
-import { createBrowserHistory } from 'history';
 
 describe('<PostPreview />', () => {
   const samplePost = {
@@ -11,7 +10,7 @@ describe('<PostPreview />', () => {
     data: {
       author: 'Mary Jane',
       category: 'Development',
-      medium_link: 'http://medium.com/',
+      article_link: 'http://medium.com/',
       source: 'http://medium.com/',
       published_at: '2018-06-09T05:00:00-05:00',
       slug: 'slug',
