@@ -1,8 +1,6 @@
 import React from 'react';
 import { withSiteData } from 'react-static';
 
-import withGAPageView from './GoogleAnalyticsTracker';
-
 import { MarketDescriptionText, MarketDescriptionWrapper } from '@src/Styles';
 
 import Hero from '@components/Hero';
@@ -35,4 +33,4 @@ export const HomeComponent = () => (
   </div>
 );
 
-export default withGAPageView(withSiteData(HomeComponent));
+export default withSiteData(HomeComponent);

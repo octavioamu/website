@@ -9,7 +9,6 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-dotdotdot": "^1.2.3",
-    "react-ga": "^2.5.0",
     "react-helmet": "^5.2.0",
     "react-markdown": "^3.3.2",
     "react-moment": "^0.7.0",

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import withGAPageView from './GoogleAnalyticsTracker';
-
 import image404 from '@images/asset_9.svg';
 import { MarketHeader, TeamDivWithResponsiveWidth } from '@styledComponents';
 
@@ -51,4 +49,4 @@ class Page404 extends React.Component {
   }
 }
 
-export default withGAPageView(Page404);
+export default Page404;

@@ -138,8 +138,8 @@ export default {
         getData: () => pressData,
       },
       {
-        path: '/presale',
-        component: 'src/containers/Presale'
+        path: '/token-interest',
+        component: 'src/containers/TokenInterest'
       },
       {
         path: '/blog',

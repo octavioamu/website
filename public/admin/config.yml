@@ -19,6 +19,7 @@ collections:
             # Remove any that aren't needed for posts
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Author", name: "author", widget: "string"}
+      - {label: "Category", name: "category", widget: "select", options: ["About", "Trading", "Dex", "Partnerships", "Development", "Team", "Cryptocurrency", "Oracle"]}
       - {label: "Published", name: "published_at", widget: "datetime"}
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
       - {label: "Body", name: "body", widget: "markdown"}
@@ -31,7 +32,6 @@ collections:
             # Remove any that aren't needed for posts
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Author", name: "author", widget: "string"}
-      - {label: "Category", name: "category", widget: "select", options: ["About", "Trading", "Dex", "Partnerships", "Development", "Team", "Cryptocurrency"]}
       - {label: "Published", name: "published_at", widget: "datetime"}
       - {label: "Read on Medium", name: "medium_link", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image"}

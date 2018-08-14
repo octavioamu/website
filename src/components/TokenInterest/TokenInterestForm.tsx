@@ -43,7 +43,7 @@ const investorValidator = (form, rule, value, callback) => {
   }
 };
 
-class PresaleForm extends React.Component<FormComponentProps> {
+class TokenInterestForm extends React.Component<FormComponentProps> {
   postfixSelector = (
     <StyledSelect
       defaultValue="USD"
@@ -73,10 +73,6 @@ class PresaleForm extends React.Component<FormComponentProps> {
             style={{ background: '#fff', padding: '50px' }}
           >
             <h1 style={{ fontSize: '2rem' }}>Interested in Contributing?</h1>
-            <DisclaimerText>
-              Please note: If you are a US person, but you are not an accredited
-              investor, do not fill out this form.
-            </DisclaimerText>
             <Form
               action="https://marketprotocol.us17.list-manage.com/subscribe/post"
               onSubmit={e => {
@@ -167,11 +163,11 @@ class PresaleForm extends React.Component<FormComponentProps> {
                   </RadioGroup>
                 )}
               </FormItem>
-              <FormItem label="Desired allocation">
+              <FormItem label="Desired Purchase Amount">
                 {getFieldDecorator('DESIREDALL', {
                   rules: [
                     {
-                      message: 'Desired allocation is required',
+                      message: 'Desired purchase amount is required',
                       required: true
                     }
                   ]
@@ -215,9 +211,7 @@ class PresaleForm extends React.Component<FormComponentProps> {
                       return option.props.children.indexOf(inputValue) >= 0;
                     }}
                   >
-                    {countries.map(c => (
-                      <Option key={c.code}>{c.name}</Option>
-                    ))}
+                    {countries.map(c => <Option key={c.code}>{c.name}</Option>)}
                   </StyledSelect>
                 )}
               </FormItem>
@@ -281,6 +275,6 @@ class PresaleForm extends React.Component<FormComponentProps> {
   }
 }
 
-const WrappedForm = Form.create<FormComponentProps>()(PresaleForm);
+const WrappedForm = Form.create<FormComponentProps>()(TokenInterestForm);
 
 export default WrappedForm;

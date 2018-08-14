@@ -314,12 +314,12 @@ class Navbar extends React.Component {
             Press
           </Link>
         </Menu.Item>
-        <Menu.Item key="/presale">
+        <Menu.Item key="/token-interest">
           <Link
-            to="/presale"
+            to="/token-interest"
             style={{ color: 'inherit', textDecoration: 'none' }}
           >
-            Pre-Sale
+            Token Interest
           </Link>
         </Menu.Item>
         <Menu.Item key="/blog">

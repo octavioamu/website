@@ -171,10 +171,10 @@ class MarketFooter extends React.Component {
               </FooterLink>
               <FooterLink>
                 <Link
-                  to="/presale"
+                  to="/token-interest"
                   style={{ color: 'inherit', textDecoration: 'none' }}
                 >
-                  Pre-Sale
+                  Token Interest
                 </Link>
               </FooterLink>
               <FooterLink>

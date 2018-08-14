@@ -3,25 +3,25 @@ import { MemoryRouter } from 'react-router';
 import { mount } from 'enzyme';
 import { Form, Input } from 'antd';
 
-import PresaleForm from '@components/Presale/PresaleForm';
+import TokenInterestForm from '@components/TokenInterest/TokenInterestForm';
 
 
-describe('<PresaleForm />', () => {
-    let component: typeof PresaleForm;
+describe('<TokenInterestForm />', () => {
+    let component: typeof TokenInterestForm;
   
     beforeEach(() => {
       component = mount(
-        <MemoryRouter><PresaleForm/></MemoryRouter>
+        <MemoryRouter><TokenInterestForm/></MemoryRouter>
       );
     });
   
     it('renders without crashing', () => {
-      expect(component.find('PresaleForm').length).toEqual(
+      expect(component.find('TokenInterestForm').length).toEqual(
         1
       );
     });
   
-    describe('Presale interest form', () => {
+    describe('token interest form', () => {
       it('renders a Form with the correct action url', () => {
         expect(component.find(Form).length).toBe(1);
         expect(
@@ -43,4 +43,3 @@ describe('<PresaleForm />', () => {
         ).toEqual('text');
       });
   });
-  

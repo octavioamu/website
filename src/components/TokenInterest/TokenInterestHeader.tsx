@@ -4,6 +4,8 @@ import { HeroText } from '@src/Styles';
 import { device, size } from '@src/breakpoints';
 import styled from 'styled-components';
 import { HeroInfo } from '@components/Partners/Hero';
+
+// Assets
 import header from '@images/presale_header.svg';
 
 export const HeroSection = styled.section`
@@ -56,31 +58,31 @@ export const HeroArt = styled.div`
   }
 `;
 
-class PresaleHeader extends React.Component {
+class TokenInterestHeader extends React.Component {
   render() {
     return (
       <HeroSection>
         <Row type="flex" className="hero" align="middle">
           <Col xs={24} md={14} lg={12} style={{ zIndex: 1 }}>
             <TextWrapper>
-              <HeroText>Presale</HeroText>
+              <HeroText>Token Interest</HeroText>
               <HeroInfo>
                 <Icon type="calendar" style={{ paddingRight: '10px' }} />
                 <b>
-                  The exact date and details of the Market Protocol presale have
+                  The exact date and details of the MARKET Protocol presale have
                   not yet been announced.
                 </b>
               </HeroInfo>
               <HeroInfo>
                 Please fill out the below form if you are interested in
-                participating in the Market Protocol presale and want to be
+                participating in the MARKET Protocol presale and want to be
                 updated as more details are announced.
               </HeroInfo>
             </TextWrapper>
           </Col>
           <Col xs={0} sm={0} md={10} lg={12}>
             <HeroArt>
-              <img alt="MARKET presale" src={header} />
+              <img alt="MARKET Protocol Token Interest" src={header} />
             </HeroArt>
           </Col>
         </Row>
@@ -89,4 +91,4 @@ class PresaleHeader extends React.Component {
   }
 }
 
-export default PresaleHeader;
+export default TokenInterestHeader;

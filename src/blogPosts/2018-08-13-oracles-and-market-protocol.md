@@ -1,22 +1,27 @@
 ---
 title: Oracles and MARKET Protocol
 author: Lazar Jovanovic
+category: Oracle
 published_at: '2018-08-13T12:22:41-05:00'
 thumbnail: /uploads/screen_shot_2018-07-27_at_4.55.58_pm.png
 ---
 Oracles date back to ancient Norse and Greek mythology. In Greek mythology, an oracle took on a few manifestations, all representing an entity in which information beyond the scope of the mortal world could be retrieved.
 
- Apollo, Greek God of the Sun, was an oracle, due to his knowledge of the future. An oracle was also an individual in communication with the Gods, able to act as a medium between the human population and the thoughts and desires of the ruling Gods. The physical location where said communication took place, where one could come in contact with information from the Gods, was also an oracle.
+ 
+Apollo, Greek God of the Sun, was an oracle, due to his knowledge of the future. An oracle was also an individual in communication with the Gods, able to act as a medium between the human population and the thoughts and desires of the ruling Gods. The physical location where said communication took place, where one could come in contact with information from the Gods, was also an oracle.
 
- Today, the idea of an oracle takes on a new role. Oracles represent persistent, updating databases of information that clients can access. A trusted third-party oracle provides a much more efficient method of retrieving and communicating data.
+ 
+Today, the idea of an oracle takes on a new role. Oracles represent persistent, updating databases of information that clients can access. A trusted third-party oracle provides a much more efficient method of retrieving and communicating data.
 
- The most popular oracle worldwide is [Oracle Database](https://www.oracle.com/database/index.html). In the case of Oracle Database, a major use-case of the platform is for payment processing, whereby Oracle Database can be used for retrieving financial account information or communicating electronic signatures to verify payments and transfer funds between accounts.
+ 
+The most popular oracle worldwide is [Oracle Database](https://www.oracle.com/database/index.html). In the case of Oracle Database, a major use-case of the platform is for payment processing, whereby Oracle Database can be used for retrieving financial account information or communicating electronic signatures to verify payments and transfer funds between accounts.
 
  
 
 ## Blockchain and Oracles
 
- In the world of blockchain infrastructure, oracles also play invaluable roles in numerous smart contract platforms and protocols, such as [MARKET Protocol](https://marketprotocol.io/).
+ 
+In the world of blockchain infrastructure, oracles also play invaluable roles in numerous smart contract platforms and protocols, such as [MARKET Protocol](https://marketprotocol.io/).
 
  Blockchains, and the tools and environments built upon them, essentially operate in isolated conditions, as if walled off from the outside world. At least for the foreseeable future, smart contracts maintain no capabilities of communicating with outside systems.
 
@@ -94,4 +99,5 @@ What happens if an oracle queried does not respond? Either due to network shutdo
 
 The waterfall method protects MARKET Protocol and other oracle users from severed communications, for whatever reason. The waterfall method is simple. MARKET Protocol queries an oracle, oracle A. If oracle A does not respond, MARKET simply goes to the next one, oracle B. This process repeats until an oracle responds with the requested information. This is a worthwhile solution in retrieving breaking and real-time information that can be sometimes difficult to obtain.
 
- If you wish to learn more about our project, please reach out to our team members on [Telegram](https://t.me/Market_Protocol_Chat) and [Discord](https://marketprotocol.io/discord), visit our website and subscribe to our newsletter to stay updated.
+ 
+If you wish to learn more about our project, please reach out to our team members on [Telegram](https://t.me/Market_Protocol_Chat) and [Discord](https://marketprotocol.io/discord), visit our website and subscribe to our newsletter to stay updated.

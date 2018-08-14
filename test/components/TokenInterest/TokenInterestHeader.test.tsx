@@ -1,11 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Col, Row } from 'antd';
-import PresaleHeader, { HeroInfo } from '@components/Presale/PresaleHeader';
+import { HeroText } from '@src/Styles';
+import TokenInterestHeader from '@components/TokenInterest/TokenInterestHeader';
 
-describe('<PresaleHeader />', () => {
+describe('<TokenInterestHeader />', () => {
     it('renders one Row component', () => {
-        const component = shallow(<PresaleHeader />);
+        const component = shallow(<TokenInterestHeader />);
         const rowComponent = component.find(Row);
         const rowComponentProps = rowComponent.props();
         expect(rowComponent).to.have.length(1);
@@ -15,22 +16,22 @@ describe('<PresaleHeader />', () => {
     });
 
     it('renders two Col components', () => {
-        const component = shallow(<PresaleHeader />);
+        const component = shallow(<TokenInterestHeader />);
         const colComponents = component.find(Col);
         const firstColComponentProps = colComponents.at(0).props();
         const secondColComponentProps = colComponents.at(1).props();
         expect(colComponents).to.have.length(2);
         expect(firstColComponentProps.xs).to.equal(24);
-        expect(secondColComponentProps.md).to.equal(24);
+        expect(secondColComponentProps.md).to.equal(10);
     });
 
-    it('renders PresaleHeader with title text', () => {
-        const component = shallow(<PresaleHeader />);
+    it('renders TokenInterestHeader with title text', () => {
+        const component = shallow(<TokenInterestHeader />);
         expect(
         component
-            .find(HeroInfo)
+            .find(HeroText)
             .render()
             .text()
-        ).to.equal('Presale');
+        ).to.equal('Token Interest');
     });
 });
