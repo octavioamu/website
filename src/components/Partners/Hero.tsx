@@ -78,7 +78,8 @@ class Hero extends React.Component {
           <Col xs={24} sm={24} md={14} lg={12} xl={12} style={{ zIndex: 1 }}>
             <TextWrapper>
               <HeroText>
-                Build on top of <br />MARKET Protocol
+                Build on top of <br />
+                MARKET Protocol
               </HeroText>
               <HeroInfo>
                 Teams all over the world are building applications and exchanges

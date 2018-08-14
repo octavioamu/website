@@ -9,19 +9,16 @@ import { device, size } from '@src/breakpoints';
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const Option = Select.Option;
+const { TextArea } = Input;
 
 export const StyledSelect = styled(Select)`
   .ant-select-selection {
     background: #f6f6f6 !important;
+    border: 0;
   }
   .ant-select-selection__clear {
     background-color: #f6f6f6 !important;
   }
-`;
-
-export const DisclaimerText = styled.p`
-  font-size: 14px;
-  margin-top: 1rem;
 `;
 
 const SectionWrapper = styled.section`
@@ -31,6 +28,16 @@ const SectionWrapper = styled.section`
   @media ${device.mobileS} and (max-width: ${size.tablet}) {
     padding: 0px;
   }
+`;
+
+const StyledCheckbox = styled(Checkbox)`
+  line-height: 2 !important;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
 `;
 
 const investorValidator = (form, rule, value, callback) => {
@@ -74,7 +81,8 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
           >
             <h1 style={{ fontSize: '2rem' }}>Interested in Contributing?</h1>
             <Form
-              action="https://marketprotocol.us17.list-manage.com/subscribe/post"
+              action={`https://marketprotocol.us17.list-manage.com/subscribe/post?
+                      u=ef1f265a21b4aae9002084ee3&amp;id=9b6a6fd0ec`}
               onSubmit={e => {
                 form.validateFields((errors, _) => {
                   if (errors) {
@@ -178,12 +186,12 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
                     addonAfter={this.postfixSelector}
                     style={{
                       backgroundColor: '#f6f6f6',
-                      width: '80%'
+                      width: '40%'
                     }}
                   />
                 )}
               </FormItem>
-              <FormItem label="Citizenship">
+              <FormItem label="Citizenship" validateStatus="success">
                 {getFieldDecorator('CITIZEN', {
                   initialValue: 'SELECT COUNTRY',
                   rules: [
@@ -202,16 +210,12 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
                     style={{
                       width: 200
                     }}
-                    showSearch={true}
-                    defaultActiveFirstOption={false}
                     dropdownStyle={{ backgroundColor: '#f6f6f6' }}
                     dropdownMenuStyle={{ backgroundColor: '#f6f6f6' }}
-                    optionFilterProp="children"
-                    filterOption={(inputValue, option) => {
-                      return option.props.children.indexOf(inputValue) >= 0;
-                    }}
                   >
-                    {countries.map(c => <Option key={c.code}>{c.name}</Option>)}
+                    {countries.map(c => (
+                      <Option key={c.code}>{c.name}</Option>
+                    ))}
                   </StyledSelect>
                 )}
               </FormItem>
@@ -230,9 +234,9 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
               </FormItem>
               <FormItem label="Anything else we should know? (optional)">
                 {getFieldDecorator('ANYTHING')(
-                  <Input
+                  <TextArea
                     name="ANYTHING"
-                    type="text"
+                    rows={4}
                     style={{
                       backgroundColor: '#f6f6f6',
                       marginTop: '10px'
@@ -249,24 +253,26 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
                     }
                   ]
                 })(
-                  <Checkbox>
+                  <StyledCheckbox>
                     You agree that completion of this form is for informational
                     purposes only, and does not constitute an offer for the sale
                     of Market tokens, nor for the sale of any equity or other
                     ownership or other interest in Market Limited.
-                  </Checkbox>
+                  </StyledCheckbox>
                 )}
               </FormItem>
-              <Button
-                type="primary"
-                htmlType="submit"
-                style={{
-                  marginTop: '1rem',
-                  width: '10rem'
-                }}
-              >
-                Submit
-              </Button>
+              <ButtonWrapper>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  style={{
+                    marginTop: '1rem',
+                    width: '10rem'
+                  }}
+                >
+                  Submit
+                </Button>
+              </ButtonWrapper>
             </Form>
           </Col>
         </Row>
