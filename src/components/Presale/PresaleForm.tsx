@@ -4,14 +4,11 @@ import styled from 'styled-components';
 import { FormComponentProps } from 'antd/lib/form';
 import { Button, Checkbox, Form, Input, Radio, Select } from 'antd';
 import countries from './countries';
+import { device, size } from '@src/breakpoints';
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const Option = Select.Option;
-
-export const PresaleWrapper = styled.div`
-  padding: 0px 0px;
-`;
 
 export const StyledSelect = styled(Select)`
   .ant-select-selection {
@@ -22,9 +19,18 @@ export const StyledSelect = styled(Select)`
   }
 `;
 
-export const DisclaimerText = styled('p')`
+export const DisclaimerText = styled.p`
   font-size: 14px;
   margin-top: 1rem;
+`;
+
+const SectionWrapper = styled.section`
+  padding: 70px 0;
+  background: #f0f0f0;
+
+  @media ${device.mobileS} and (max-width: ${size.tablet}) {
+    padding: 0px;
+  }
 `;
 
 const investorValidator = (form, rule, value, callback) => {
@@ -57,9 +63,20 @@ class PresaleForm extends React.Component<FormComponentProps> {
     const { form } = this.props;
     const { getFieldDecorator } = form;
     return (
-      <PresaleWrapper>
-        <Row type="flex" className="hero" align="middle">
-          <Col xs={24} sm={24} md={12} lg={12}>
+      <SectionWrapper>
+        <Row type="flex" justify="center">
+          <Col
+            xs={24}
+            sm={24}
+            md={16}
+            xl={12}
+            style={{ background: '#fff', padding: '50px' }}
+          >
+            <h1 style={{ fontSize: '2rem' }}>Interested in Contributing?</h1>
+            <DisclaimerText>
+              Please note: If you are a US person, but you are not an accredited
+              investor, do not fill out this form.
+            </DisclaimerText>
             <Form
               action="https://marketprotocol.us17.list-manage.com/subscribe/post"
               onSubmit={e => {
@@ -74,17 +91,6 @@ class PresaleForm extends React.Component<FormComponentProps> {
             >
               <input type="hidden" name="u" value="ef1f265a21b4aae9002084ee3" />
               <input type="hidden" name="id" value="491f750dec" />{' '}
-              <h2
-                style={{
-                  margin: '1rem 0 1rem 0'
-                }}
-              >
-                Interested in Contributing?
-              </h2>
-              <DisclaimerText>
-                Please note: If you are a US person, but you are not an
-                accredited investor, do not fill out this form.
-              </DisclaimerText>
               <FormItem label="Full Name">
                 {getFieldDecorator('FNAME', {
                   rules: [
@@ -270,7 +276,7 @@ class PresaleForm extends React.Component<FormComponentProps> {
             </Form>
           </Col>
         </Row>
-      </PresaleWrapper>
+      </SectionWrapper>
     );
   }
 }

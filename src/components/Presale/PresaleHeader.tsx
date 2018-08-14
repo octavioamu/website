@@ -1,51 +1,90 @@
 import React from 'react';
-import { Col, Row } from 'antd';
+import { Col, Icon, Row } from 'antd';
 import { HeroText } from '@src/Styles';
 import { device, size } from '@src/breakpoints';
 import styled from 'styled-components';
+import { HeroInfo } from '@components/Partners/Hero';
+import header from '@images/presale_header.svg';
 
-export const HeroInfo = HeroText.extend`
-  color: #000;
+export const HeroSection = styled.section`
+  background: #181e26;
 `;
 
 export const TextWrapper = styled.div`
-  width: 800px;
+  margin: 70px 0px 150px 50px;
+
   @media ${device.mobileS} and (max-width: ${size.mobileL}) {
-    padding: 0px 0px;
+    margin: 70px 30px 70px 30px;
   }
 
   @media ${device.mobileL} and (max-width: ${size.tablet}) {
-    padding: 0px 0px;
+    margin: 50px 50px 100px 50px;
   }
 
-  @media ${device.tablet} and (max-width: ${size.laptop}) {
-    padding: 0px 40px;
+  @media ${device.desktopS} {
+    margin-bottom: 20%;
+  }
+`;
+
+export const HeroArt = styled.div`
+  text-align: center;
+  margin-right: -25x;
+  img {
+    width: 60%;
+    
+    @media ${device.tablet} and (max-width: ${size.tabletL}) {
+      width: 70%;
+    }
+
+    @media ${device.desktopS} {
+      width: 55%;
+    }
+  }
+
+  @media ${device.mobileS} and (max-width: 767px) {
+    z-index: -1;
+  }
+  
+  @media ${device.mobileL} and (max-width: ${size.tablet}) {
+    opacity: 0.4
+    margin-top: -80px;
+    
+    img {
+      width: 30%;
+      margin-top: -30%;
+    }
   }
 `;
 
 class PresaleHeader extends React.Component {
   render() {
     return (
-      <section>
+      <HeroSection>
         <Row type="flex" className="hero" align="middle">
-          <Col xs={24} sm={24} md={24} lg={24}>
-            <HeroInfo>Presale</HeroInfo>
+          <Col xs={24} md={14} lg={12} style={{ zIndex: 1 }}>
+            <TextWrapper>
+              <HeroText>Presale</HeroText>
+              <HeroInfo>
+                <Icon type="calendar" style={{ paddingRight: '10px' }} />
+                <b>
+                  The exact date and details of the Market Protocol presale have
+                  not yet been announced.
+                </b>
+              </HeroInfo>
+              <HeroInfo>
+                Please fill out the below form if you are interested in
+                participating in the Market Protocol presale and want to be
+                updated as more details are announced.
+              </HeroInfo>
+            </TextWrapper>
           </Col>
-          <Col xs={24} sm={24} md={24} lg={24}>
-            <TextWrapper>
-              <b>
-                The exact date and details of the Market Protocol presale have
-                not yet been announced.
-              </b>
-            </TextWrapper>
-            <TextWrapper>
-              Please fill out this form if you are interested in participating
-              in the Market Protocol presale and want to be updated as more
-              details are announced.
-            </TextWrapper>
+          <Col xs={0} sm={0} md={10} lg={12}>
+            <HeroArt>
+              <img alt="MARKET presale" src={header} />
+            </HeroArt>
           </Col>
         </Row>
-      </section>
+      </HeroSection>
     );
   }
 }
