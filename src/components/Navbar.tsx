@@ -289,15 +289,15 @@ class Navbar extends React.Component {
         <StyledSubMenu title={'Whitepaper'} trigger={'click'}>
           {whitepaperLinks}
         </StyledSubMenu>
-        <Menu.Item key="/faq">
-          <Link
-            to="https://docs.marketprotocol.io/#faq-general"
-            style={{ color: 'inherit', textDecoration: 'none' }}
-            target="_blank"
-          >
-            FAQs
-          </Link>
-        </Menu.Item>
+        {/*<Menu.Item key="/faq">*/}
+        {/*<Link*/}
+        {/*to="https://docs.marketprotocol.io/#faq-general"*/}
+        {/*style={{ color: 'inherit', textDecoration: 'none' }}*/}
+        {/*target="_blank"*/}
+        {/*>*/}
+        {/*FAQs*/}
+        {/*</Link>*/}
+        {/*</Menu.Item>*/}
         <Menu.Item key="/partners">
           <Link
             to="/partners"
@@ -312,6 +312,14 @@ class Navbar extends React.Component {
             style={{ color: 'inherit', textDecoration: 'none' }}
           >
             Press
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="/token-interest">
+          <Link
+            to="/token-interest"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            Token Interest
           </Link>
         </Menu.Item>
         <Menu.Item key="/blog">

@@ -9,7 +9,7 @@ interface Post {
     title: string;
     author: string;
     published_at: string;
-    medium_link: string;
+    article_link: string;
     thumbnail: string;
     slug: string;
   };
@@ -28,7 +28,7 @@ describe('<Press />', () => {
         title: `post${i}`,
         author: `author${i}`,
         published_at: '2018-06-09T05:00:00-05:00',
-        medium_link: 'http://medium.com/',
+        article_link: 'http://medium.com/',
         thumbnail: 'path/to/thumbnail',
         slug: '/slug'
       },

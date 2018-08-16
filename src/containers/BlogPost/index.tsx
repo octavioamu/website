@@ -8,4 +8,5 @@
  */
 import { withRouteData } from 'react-static';
 import BlogPost from './BlogPost';
+
 export default withRouteData(BlogPost);

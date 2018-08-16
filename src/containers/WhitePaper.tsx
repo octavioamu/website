@@ -1,6 +1,5 @@
 import React from 'react';
 import { withSiteData } from 'react-static';
-import withGAPageView from './GoogleAnalyticsTracker';
 
 import styled from 'styled-components';
 import { Col, Row } from 'antd';
@@ -63,4 +62,4 @@ export const WhitePaperComponent = () => (
   </Row>
 );
 
-export default withGAPageView(withSiteData(WhitePaperComponent));
+export default withSiteData(WhitePaperComponent);
