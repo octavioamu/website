@@ -42,6 +42,7 @@ const ButtonWrapper = styled.div`
 
 interface State {
   citizen: string;
+  currency: string;
 }
 
 class TokenInterestForm extends React.Component<FormComponentProps, State> {
@@ -54,6 +55,7 @@ class TokenInterestForm extends React.Component<FormComponentProps, State> {
         backgroundColor: 'transparent',
         width: 80
       }}
+      onChange={(currency: string) => this.setState({ currency })}
     >
       <Option value="USD">USD</Option>
       <Option value="ETH">ETH</Option>
@@ -65,12 +67,9 @@ class TokenInterestForm extends React.Component<FormComponentProps, State> {
     super(props);
 
     this.state = {
-      citizen: ''
+      citizen: '',
+      currency: 'USD'
     };
-  }
-
-  handleCitizenSelect = (citizen: string) => {
-    this.setState({ citizen });
   }
 
   render() {
@@ -104,6 +103,11 @@ class TokenInterestForm extends React.Component<FormComponentProps, State> {
               <input type="hidden" name="u" value="ef1f265a21b4aae9002084ee3" />
               <input type="hidden" name="id" value="9b6a6fd0ec" />
               <input type="hidden" name="CITIZEN" value={this.state.citizen} />
+              <input
+                type="hidden"
+                name="ALLOCCUR"
+                value={this.state.currency}
+              />
 
               <FormItem label="Full Name">
                 {getFieldDecorator('FNAME', {
@@ -173,6 +177,13 @@ class TokenInterestForm extends React.Component<FormComponentProps, State> {
                     {
                       message: 'Desired purchase amount is required',
                       required: true
+                    },
+                    {
+                      validator: (rule, value, callback) => {
+                        return parseInt(value, 10) < 1
+                          ? callback('Minimum purchase amount value is 1')
+                          : callback();
+                      }
                     }
                   ]
                 })(
@@ -204,7 +215,7 @@ class TokenInterestForm extends React.Component<FormComponentProps, State> {
                     }}
                     dropdownStyle={{ backgroundColor: '#f6f6f6' }}
                     dropdownMenuStyle={{ backgroundColor: '#f6f6f6' }}
-                    onChange={this.handleCitizenSelect}
+                    onChange={(citizen: string) => this.setState({ citizen })}
                     showSearch
                     filterOption={(input, option) =>
                       option.props.children
