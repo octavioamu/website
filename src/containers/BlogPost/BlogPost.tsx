@@ -254,6 +254,10 @@ class BlogPost extends React.Component<BlogPostProps, {}> {
   render() {
     const { blogData, history, post } = this.props;
 
+    const source = post.data.source;
+    const slug = `/blog/post/${post.data.slug}`;
+    const hasSource = typeof source === 'string';
+
     return (
       <BlogPostWrap>
         <BackgroundContainer>
@@ -299,7 +303,7 @@ class BlogPost extends React.Component<BlogPostProps, {}> {
                       Reading time: {post.data.readtime} minutes
                     </ReadTimeContainer>
                     <div>
-                      <SocialLinks slug={post.data.slug} />
+                      <SocialLinks slug={source || slug} external={hasSource} />
                     </div>
                   </RowContainer>
                   <BlogContent>

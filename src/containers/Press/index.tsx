@@ -1,3 +1,19 @@
+/*
+ * this file imports the blog component and exports it with route data
+ *
+ * why do this? running the component through withRouteData() causes tons of
+ * issues with enzyme test code. the vanilla component is imported for testing
+ * directly from ./Blog.tsx and fed custom testing props, while this version is
+ * imported for use in the app.
+ */
+// New Press UI
+// import { withRouteData } from 'react-static';
+// import Press from './Press';
+
+// export default withRouteData(Press);
+
+// Old Press UI
+// TODO: Remove below code and un-comment the above code
 import React, { Component } from 'react';
 import linkInfos from './config';
 import { MarketHeader } from '@styledComponents';

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import withGAPageView from '@containers/GoogleAnalyticsTracker';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { Button } from 'antd';
@@ -184,4 +183,4 @@ class PartnersComponent extends Component {
   }
 }
 
-export default withGAPageView(PartnersComponent);
+export default PartnersComponent;

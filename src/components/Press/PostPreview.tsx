@@ -1,14 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Moment from 'react-moment';
-import Dotdotdot from 'react-dotdotdot';
-import showdown from 'showdown';
 import { History } from 'history';
 import { device } from '@src/breakpoints';
 
-import SocialLinks from './SocialLinks';
-
-const converter = new showdown.Converter();
+import SocialLinks from '@components/Blog/SocialLinks';
 
 const RootWrap = styled.div`
   width: 100%;
@@ -120,7 +116,7 @@ interface Post {
     author: string;
     category: string;
     published_at: string;
-    medium_link: string;
+    article_link: string;
     thumbnail: string;
     slug: string;
     source: string;
@@ -137,40 +133,6 @@ interface PostPreviewProps {
 }
 
 class PostPreview extends React.Component<PostPreviewProps> {
-  constructor(props: PostPreviewProps) {
-    super(props);
-
-    this.goto = this.goto.bind(this);
-    this.createMarkup = this.createMarkup.bind(this);
-  }
-
-  createMarkup(body: object, markup: HTMLElement) {
-    const content = [];
-    const sibling = body.firstElementChild.nextElementSibling;
-    const textLength = 177;
-    content.push(markup);
-
-    if (markup.textContent.length <= textLength) {
-      if (sibling.innerText.length >= textLength) {
-        sibling.innerText = sibling.innerText.substring(0, textLength) + '...';
-      } else {
-        sibling.innerText = sibling.innerText + '...';
-      }
-
-      content.push(sibling);
-    } else {
-      markup.textContent = markup.textContent.substring(0, textLength) + '...';
-    }
-
-    return content.length > 1
-      ? content[0].outerHTML + content[1].outerHTML
-      : content[0].outerHTML;
-  }
-
-  goto(slug: string) {
-    this.props.history.push(slug);
-  }
-
   render() {
     const { post, featured } = this.props;
 
@@ -178,16 +140,12 @@ class PostPreview extends React.Component<PostPreviewProps> {
       return null;
     }
 
-    const parser = new DOMParser();
-    const htmlString = converter.makeHtml(post.content);
-    const html = parser.parseFromString(htmlString, 'text/html');
-    const intro = html.body.firstElementChild;
-    const slug = `/blog/post/${post.data.slug}`;
-    const markup = this.createMarkup(html.body, intro as HTMLElement);
+    const source = post.data.article_link;
+    const goto = () => window.open(source, '_blank');
 
     return (
-      <RootWrap>
-        <div id="root" onClick={() => this.goto(slug)}>
+      <RootWrap onClick={goto}>
+        <div id="root">
           <div
             id="blogImage"
             style={{
@@ -196,7 +154,6 @@ class PostPreview extends React.Component<PostPreviewProps> {
             }}
           />
           <div id="blogStats">
-            <div id="blogStatsCategory">{post.data.category}</div>
             <div id="blogStatsTime">
               <Moment format={'MMMM D, YYYY'}>{post.data.published_at}</Moment>
             </div>
@@ -208,7 +165,7 @@ class PostPreview extends React.Component<PostPreviewProps> {
               lineHeight: featured ? '33px' : '29px'
             }}
           >
-            <Dotdotdot clamp={3}>{post.data.title}</Dotdotdot>
+            {post.data.title}
           </div>
           <div
             style={{
@@ -217,17 +174,17 @@ class PostPreview extends React.Component<PostPreviewProps> {
             }}
             id="blogContent"
           >
-            <div dangerouslySetInnerHTML={{ __html: markup }} />
+            {post.content}
           </div>
           <div id="blogActions">
             <div id="blogLink">
-              Continue Reading{' '}
+              Read More{' '}
               <div id="arrow-container">
                 <span id="arrow">›</span>
               </div>
             </div>
             <div id="socialLinksWrapper">
-              <SocialLinks slug={slug} />
+              <SocialLinks slug={source} external={true} />
             </div>
           </div>
         </div>

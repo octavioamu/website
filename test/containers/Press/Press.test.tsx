@@ -1,59 +1,79 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import Press from '@containers/Press';
-import linkInfos from '@containers/Press/config';
+import { shallow, mount } from 'enzyme';
+import Press from '@containers/Press/Press';
+import { createMemoryHistory } from 'history';
+import WithData from '@containers/Press';
 
-describe(`/team press`, () => {
-  it('should render a <Press /> component without crashing', () => {
-    mount(<Press />);
-  });
+interface Post {
+  data: {
+    title: string;
+    author: string;
+    published_at: string;
+    article_link: string;
+    thumbnail: string;
+    slug: string;
+  };
+  content: string;
+}
 
-  it(`should render an h2 with text: "MARKET Protocol in the press"`, () => {
-    const wrapper = mount(<Press />);
-    expect(
-      wrapper
-        .find('h2')
-        .at(0)
-        .text()
-    ).toEqual('MARKET Protocol in the press');
-  });
+describe('<Press />', () => {
+  let component = typeof Press;
+  const posts: Post[] = [];
+  const numPostsToTest = 28;
 
-  it(`should render same number of SingleLinks as linkInfos`, () => {
-    const wrapper = mount(<Press />);
-    expect(wrapper.find('SingleLink').length).toEqual(
-      linkInfos.length
+  // populate posts[]
+  for (let i = 0; i < numPostsToTest; i++) {
+    posts.push({
+      data: {
+        title: `post${i}`,
+        author: `author${i}`,
+        published_at: '2018-06-09T05:00:00-05:00',
+        article_link: 'http://medium.com/',
+        thumbnail: 'path/to/thumbnail',
+        slug: '/slug'
+      },
+      content: 'The content.'
+    });
+  }
+
+  beforeEach(() => {
+    const history = createMemoryHistory();
+    history.push('/press');
+
+    component = shallow(
+      <Press posts={posts} history={history} />
     );
   });
 
-  it('should response width change - column style', () => {
+  it('should have the title "Press"', () => {
     const wrapper = mount(<Press />);
-    window.dispatchEvent(new Event('resize', {target: {innerWidth: 500}}))
-    setTimeout(() => {
-      expect(wrapper.state().displayDirection).toEqual('column');
-    }, 600);
-
-  }, 1000);
-
-  it('should response width change - row style', () => {
-    const wrapper = mount(<Press />);
-    window.dispatchEvent(new Event('resize', {target: {innerWidth: 1000}}))
-
-    setTimeout(() => {
-      expect(wrapper.state().displayDirection).toEqual('row');
-    }, 600);
-
-  }, 1000);
-
-  it('should use row displayDirection when windowWidth > 768', () => {
-    window.innerWidth = 1000;
-    const wrapper = mount(<Press />);
-    expect(wrapper.state().displayDirection).toEqual('row');
+    expect(wrapper.find('.title').text()).toEqual('Press');
   });
 
-  it('should use column displayDirection when windowWidth <= 768', () => {
-    window.innerWidth = 500;
-    const wrapper = mount(<Press />);
-    expect(wrapper.state().displayDirection).toEqual('column');
+  it('renders without crashing', () => {
+    expect(component.exists());
   });
 
+  it('unmounts without crashing', () => {
+    component.unmount();
+  });
+
+  it('loads more posts', () => {
+    const instance = component.instance();
+    instance.onLoadMore();
+    expect(component.state().page).toEqual(2);
+  });
+
+  it('should have 6 posts per page', () => {
+    const instance = component.instance();
+    expect(component.state().numPostsPerPage).toEqual(6);
+  });
+});
+
+describe('With data', () => {
+  it('renders without crashing', () => {
+    const component = shallow(
+      <WithData />
+    );
+  });
 });

@@ -3,7 +3,6 @@ import { Col, Row } from 'antd';
 import { Helmet } from 'react-helmet';
 
 import config, { Advisor, TeamMember } from './config';
-import withGAPageView from '@containers/GoogleAnalyticsTracker';
 import { MarketHeader, TeamDivWithResponsiveWidth } from '@styledComponents';
 import colors from '@styles/json/colors';
 import Cta from '@components/Cta';
@@ -140,4 +139,4 @@ export class TeamComponent extends React.Component<{}, State> {
   }
 }
 
-export default withGAPageView(TeamComponent);
+export default TeamComponent;

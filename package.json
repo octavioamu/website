@@ -1,6 +1,6 @@
 {
   "name": "marketprotocol.io",
-  "version": "2.5.5",
+  "version": "2.6.0",
   "main": "index.js",
   "license": "Apache-2.0",
   "dependencies": {
@@ -9,7 +9,6 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-dotdotdot": "^1.2.3",
-    "react-ga": "^2.5.0",
     "react-helmet": "^5.2.0",
     "react-markdown": "^3.3.2",
     "react-moment": "^0.7.0",
@@ -109,7 +108,8 @@
       }
     },
     "collectCoverageFrom": [
-      "src/**/*.{ts,tsx,js,jsx,mjs}"
+      "src/**/*.{ts,tsx,js,jsx,mjs}",
+      "!src/assets/images/press/index.js"
     ],
     "setupFiles": [],
     "testMatch": [

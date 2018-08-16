@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import Blog from '@containers/Blog/Blog';
 import { createMemoryHistory } from 'history';
 import WithData from '@containers/Blog';
-import PostPreview from '@components/Blog/PostPreview';
 
 interface Post {
   data: {

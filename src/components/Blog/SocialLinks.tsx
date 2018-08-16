@@ -27,22 +27,33 @@ const RootWrap = styled.div`
 interface Props {
   size?: number;
   slug?: string;
+  external?: boolean;
 }
 
 const isClient = typeof window !== 'undefined';
 
-const SocialLinks = ({ size = 30, slug }: Props) => {
+const constructTwitter = (slug: string, external: boolean) => {
+  const base = 'https://twitter.com/intent/tweet?url=';
+  const marketProtocolUrl = 'https://marketprotocol.io';
+  const via = '&via=MarketProtocol';
+  return external ? base + slug + via : base + marketProtocolUrl + slug + via;
+};
+
+const constructFacebook = (slug: string, external: boolean) => {
+  const base = 'https://www.facebook.com/sharer/sharer.php?u=';
+  const marketProtocolUrl = 'https://marketprotocol.io/blog/post';
+  return external ? base + slug : base + marketProtocolUrl + slug;
+};
+
+const SocialLinks = ({ size = 30, slug, external }: Props) => {
   const buttonStyle = {
     height: size,
     width: size
   };
 
-  const twitterUrl = slug
-    ? `https://twitter.com/intent/tweet?url=https://marketprotocol.io/blog/post/${slug}&via=MarketProtocol`
-    : 'https://twitter.com/MarketProtocol/';
-  const secondaryUrl = slug
-    ? `https://www.facebook.com/sharer/sharer.php?u=https://marketprotocol.io/blog/post/${slug}`
-    : 'https://medium.com/market-protocol';
+  const twitterUrl = constructTwitter(slug, external);
+  const secondaryUrl = constructFacebook(slug, external);
+
   const secondaryIcon = slug ? facebook : medium;
 
   const openLink = (e: React.FormEvent<{}>, url: string) => {

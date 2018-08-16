@@ -30,29 +30,27 @@ const Bold = styled.div`
   text-align: left;
 `;
 const PostItemContainer = styled.div`
-  width: 32%
-  background-color: #fff;
+  width: 32%;
   cursor: pointer;
   margin-bottom: 20px;
-  box-shadow: 0 2px 14px 0 rgba(0,0,0,0.05);
+  background-color: #fff;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.05);
   transition: all 300ms;
-  
+
+  > #root {
+    display: flex;
+    flex-direction: column;
+  }
+
   :hover {
-    box-shadow: 0 15px 30px 0 rgba(0,0,0,0.15);
-  }
-  @media screen and (max-width: ${size.tabletL}) {
-    width: 48%;
-    margin-bottom: 20px;
-  }
-  @media screen and (max-width: ${size.mobileL}) {
-    width: 100%;
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.15);
   }
 `;
 const PostItemImage = styled.img`
   width: 100%;
 `;
 const Cropper = styled.div`
-  width: 100%
+  width: 100%;
   height: 160px;
   overflow: hidden;
 `;
@@ -82,6 +80,16 @@ interface Props {
 }
 
 class VerticalPostPreview extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
+
+    this.goto = this.goto.bind(this);
+  }
+
+  goto(slug: string) {
+    this.props.history.push(`/blog/post/${slug}`);
+  }
+
   render() {
     const { history, post } = this.props;
 
@@ -90,22 +98,26 @@ class VerticalPostPreview extends React.Component<Props> {
     }
 
     return (
-      <PostItemContainer
-        onClick={() => history.push(`/blog/post/${post.data.slug}`)}
-      >
-        <Cropper>
-          <PostItemImage src={post.data.thumbnail} />
-        </Cropper>
-        <RowContainer>
-          <CategoryContainer style={{ fontSize: '0.6rem' }}>
-            {post.data.category.toUpperCase()} {''}
-          </CategoryContainer>
-          <Moment format={'MMMM Do, YYYY'}>{post.data.published_at}</Moment>
-        </RowContainer>
-        <Bold>{post.data.title}</Bold>
-        <Text>
-          <Markdown source={cropContent(post.content, 20)} escapeHtml={false} />
-        </Text>
+      <PostItemContainer>
+        <div id="root" onClick={() => this.goto(post.data.slug)}>
+          <Cropper>
+            <PostItemImage src={post.data.thumbnail} id="postImage" />
+          </Cropper>
+          <RowContainer>
+            <CategoryContainer style={{ fontSize: '0.6rem' }}>
+              {' '}
+              {post.data.category.toUpperCase()} {''}
+            </CategoryContainer>
+            <Moment format={'MMMM Do, YYYY'}>{post.data.published_at}</Moment>
+          </RowContainer>
+          <Bold>{post.data.title}</Bold>
+          <Text>
+            <Markdown
+              source={cropContent(post.content, 20)}
+              escapeHtml={false}
+            />
+          </Text>
+        </div>
       </PostItemContainer>
     );
   }

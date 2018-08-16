@@ -32,16 +32,24 @@ class Jobs extends Component {
         <SectionWrapper style={{ paddingTop: 0 }}>
           <Row type="flex" align="middle">
             <Perks imgURL={compensation} alt="Competitive compensation">
-              Competitive<br />compensation
+              Competitive
+              <br />
+              compensation
             </Perks>
             <Perks imgURL={location} alt="Location agnostic">
-              Location<br />agnostic
+              Location
+              <br />
+              agnostic
             </Perks>
             <Perks imgURL={flexible} alt="Flexible time off">
-              Flexible time off<br />and work schedule
+              Flexible time off
+              <br />
+              and work schedule
             </Perks>
             <Perks imgURL={token} alt="Token allocation">
-              Token<br />allocations
+              Token
+              <br />
+              allocations
             </Perks>
           </Row>
         </SectionWrapper>

@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { ServerStyleSheet } from 'styled-components'
 import { Helmet } from 'react-helmet'
 
-import { getLocationOrigin } from './src/helpers/url.ts'
-import EnvironmentConstant from './src/constants/environment.ts'
-
 /*
 * For Less Support
 * */
@@ -37,7 +34,7 @@ const webpack = require('webpack')
  * ------------
  * used by getData function of /blog route
  * */
-function getBlogData () {
+function getBlogData (type) {
   const matter = require('gray-matter')
   const klaw = require('klaw')
 
@@ -46,9 +43,9 @@ function getBlogData () {
 
   const getPosts = new Promise(resolve => {
     // make sure post directory exists
-    if (fs.existsSync('./src/blogPosts')) {
+    if (fs.existsSync(`./src/${type}`)) {
       // walk through post directory
-      klaw('./src/blogPosts')
+      klaw(`./src/${type}`)
         // process post files
         .on('data', (item) => {
           if (path.extname(item.path) === '.md') {
@@ -104,7 +101,8 @@ export default {
     title: 'MARKET Protocol',
   }),
   getRoutes: async () => {
-    const blogData = await getBlogData()
+    const blogData = await getBlogData('blogPosts');
+    // const pressData = await getBlogData('pressPosts');
 
     return [
       {
@@ -120,10 +118,6 @@ export default {
         component: 'src/containers/About',
       },
       {
-        path: '/press',
-        component: 'src/containers/Press',
-      },
-      {
         path: '/partners',
         component: 'src/containers/Partners',
       },
@@ -134,6 +128,15 @@ export default {
       {
         path: '/jobs',
         component: 'src/containers/Jobs'
+      },
+      {
+        path: '/press',
+        component: 'src/containers/Press',
+        // getData: () => pressData,
+      },
+      {
+        path: '/token-interest',
+        component: 'src/containers/TokenInterest'
       },
       {
         path: '/blog',
@@ -161,7 +164,11 @@ export default {
   },
   Document: class CustomHtml extends Component {
     render () {
-      const { Body, children, Html, Head, renderMeta } = this.props
+      const { Body, children, Html, Head, renderMeta, routeInfo } = this.props
+      const ogUrl = `https://marketprotocol.io/${routeInfo && routeInfo.path ? routeInfo.path : ''}`
+      const post = routeInfo && routeInfo.allProps ? routeInfo.allProps.post : undefined
+      const metaTitle = post && post.data && post.data.title ? post.data.title : 'MARKET Protocol'
+      const metaImage = post && post.data && post.data.thumbnail ? post.data.thumbnail : 'https://marketprotocol.io/social.jpg'
 
       return (
         <Html itemScope itemType="http://schema.org/Article">
@@ -179,25 +186,25 @@ export default {
             {renderMeta.helmet && renderMeta.helmet.meta.toComponent()}
 
             <meta httpEquiv="content-language" content="en" />
-            <meta itemProp="name" content="MARKET Protocol" />
+            <meta itemProp="name" content={metaTitle} />
             <meta
               itemProp="description"
               content="Powering safe, solvent and trustless trading of any asset."
             />
-            <meta itemProp="image" content="https://marketprotocol.io/social.jpg" />
+            <meta itemProp="image" content={metaImage} />
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:site" content="@MarketProtocol" />
             <meta name="twitter:creator" content="@MarketProtocol" />
-            <meta name="twitter:image:src" content="https://marketprotocol.io/social.jpg" />
+            <meta name="twitter:image:src" content={metaImage} />
             <meta property="og:locale" content="en_US" />
             <meta name="language" content="English" />
-            <meta property="og:url" content="https://marketprotocol.io/" />
-            <meta property="og:title" content="MARKET Protocol" />
+            <meta property="og:url" content={ogUrl} />
+            <meta property="og:title" content={metaTitle} />
             <meta
               property="og:description"
               content="Powering safe, solvent and trustless trading of any asset."
             />
-            <meta property="og:image" content="https://marketprotocol.io/social.jpg" />
+            <meta property="og:image" content={metaImage} />
             <meta name="robots" content="index,follow" />
           </Head>
           <Body>
