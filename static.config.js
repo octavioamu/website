@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { ServerStyleSheet } from 'styled-components'
 import { Helmet } from 'react-helmet'
 
-import { getLocationOrigin } from './src/helpers/url.ts'
-import EnvironmentConstant from './src/constants/environment.ts'
-
 /*
 * For Less Support
 * */
@@ -105,7 +102,7 @@ export default {
   }),
   getRoutes: async () => {
     const blogData = await getBlogData('blogPosts');
-    const pressData = await getBlogData('pressPosts');
+    // const pressData = await getBlogData('pressPosts');
 
     return [
       {
@@ -135,7 +132,7 @@ export default {
       {
         path: '/press',
         component: 'src/containers/Press',
-        getData: () => pressData,
+        // getData: () => pressData,
       },
       {
         path: '/token-interest',
