@@ -40,7 +40,11 @@ const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 
-class TokenInterestForm extends React.Component<FormComponentProps> {
+interface State {
+  citizen: string;
+}
+
+class TokenInterestForm extends React.Component<FormComponentProps, State> {
   postfixSelector = (
     <StyledSelect
       defaultValue="USD"
@@ -56,6 +60,18 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
       <Option value="BTC">BTC</Option>
     </StyledSelect>
   );
+
+  constructor(props: FormComponentProps) {
+    super(props);
+
+    this.state = {
+      citizen: ''
+    };
+  }
+
+  handleCitizenSelect = (citizen: string) => {
+    this.setState({ citizen });
+  }
 
   render() {
     const { form } = this.props;
@@ -73,8 +89,7 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
           >
             <h1 style={{ fontSize: '2rem' }}>Interested in Contributing?</h1>
             <Form
-              action={`https://marketprotocol.us17.list-manage.com/subscribe/post?
-                      u=ef1f265a21b4aae9002084ee3&amp;id=9b6a6fd0ec`}
+              action={`https://marketprotocol.us17.list-manage.com/subscribe/post`}
               onSubmit={e => {
                 form.validateFields((errors, _) => {
                   if (errors) {
@@ -84,9 +99,12 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
               }}
               acceptCharset="utf-8"
               method="post"
+              autoComplete={'off'}
             >
               <input type="hidden" name="u" value="ef1f265a21b4aae9002084ee3" />
-              <input type="hidden" name="id" value="491f750dec" />{' '}
+              <input type="hidden" name="id" value="9b6a6fd0ec" />
+              <input type="hidden" name="CITIZEN" value={this.state.citizen} />
+
               <FormItem label="Full Name">
                 {getFieldDecorator('FNAME', {
                   rules: [
@@ -132,20 +150,20 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
               </FormItem>
               <FormItem label="Are you an accredited investor?">
                 {getFieldDecorator('ACCRED', {
-                  initialValue: 'yes'
+                  initialValue: 'Yes'
                 })(
                   <RadioGroup name="ACCRED">
-                    <Radio value="yes">Yes</Radio>
-                    <Radio value="no">No</Radio>
+                    <Radio value="Yes">Yes</Radio>
+                    <Radio value="No">No</Radio>
                   </RadioGroup>
                 )}
               </FormItem>
               <FormItem label="What type of entity do you represent?">
                 {getFieldDecorator('ENTITY', { initialValue: 'individual' })(
                   <RadioGroup name="ENTITY">
-                    <Radio value="individual">Individual</Radio>
-                    <Radio value="syndicate">Syndicate</Radio>
-                    <Radio value="professionalFund">Professional Fund</Radio>
+                    <Radio value="Individual">Individual</Radio>
+                    <Radio value="Syndicate">Syndicate</Radio>
+                    <Radio value="Professional Fund">Professional Fund</Radio>
                   </RadioGroup>
                 )}
               </FormItem>
@@ -164,8 +182,9 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
                     addonAfter={this.postfixSelector}
                     style={{
                       backgroundColor: '#f6f6f6',
-                      width: '40%'
+                      width: 250
                     }}
+                    type="number"
                   />
                 )}
               </FormItem>
@@ -181,12 +200,23 @@ class TokenInterestForm extends React.Component<FormComponentProps> {
                   <StyledSelect
                     placeholder="SELECT COUNTRY"
                     style={{
-                      width: 200
+                      width: 250
                     }}
                     dropdownStyle={{ backgroundColor: '#f6f6f6' }}
                     dropdownMenuStyle={{ backgroundColor: '#f6f6f6' }}
+                    onChange={this.handleCitizenSelect}
+                    showSearch
+                    filterOption={(input, option) =>
+                      option.props.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
+                    }
                   >
-                    {countries.map(c => <Option key={c.code}>{c.name}</Option>)}
+                    {countries.map(c => (
+                      <Option key={c.code} value={c.name}>
+                        {c.name}
+                      </Option>
+                    ))}
                   </StyledSelect>
                 )}
               </FormItem>

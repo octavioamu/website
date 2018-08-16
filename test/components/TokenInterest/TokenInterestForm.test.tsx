@@ -30,8 +30,7 @@ describe('<TokenInterestForm />', () => {
             .find(Form)
             .at(0)
             .props().action
-        ).toEqual(`https://marketprotocol.us17.list-manage.com/subscribe/post?
-                      u=ef1f265a21b4aae9002084ee3&amp;id=9b6a6fd0ec`);
+        ).toEqual(`https://marketprotocol.us17.list-manage.com/subscribe/post`);
       });
 
       it('renders 4 Input types', () => {
