@@ -23,6 +23,7 @@ injectGlobal`
     transition: 250ms;
   }
 }
+
 .ant-select-dropdown-menu-item:hover {
   background-color: #e6f7ff !important;
 }
@@ -35,6 +36,10 @@ injectGlobal`
 }
 .ant-select-dropdown-menu-item-active {
   background-color: #e6f7ff !important;
+
+.explainer-modal .ant-modal-close-x {
+  color: white;
+
 }
 `;
 
