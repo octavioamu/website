@@ -9,7 +9,7 @@ import Cta from '@components/Cta';
 
 export const CtaContainer = styled.div`
   margin-left: 50px;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   width: 40%;
 
   @media ${device.mobileS} and (max-width: ${size.mobileL}) {
@@ -60,17 +60,16 @@ export const HeroText = styled.h1`
   color: #f0f0f0;
   font-size: 50px;
   font-weight: 700;
-  margin: 150px 50px 0 50px;
   line-height: 1.2;
 
   @media ${device.mobileS} {
     font-size: 22px;
-    margin: 70px 30px 0 30px;
+    margin: 50px 30px 0 30px;
   }
 
   @media ${device.mobileL} and (max-width: ${size.tablet}) {
     font-size: 32px;
-    margin: 150px 50px 0 50px;
+    margin: 35px 50px 0 50px;
   }
 
   @media ${device.tablet} {
@@ -98,7 +97,7 @@ class Hero extends React.Component<{ text?: string }, {}> {
                 'Powering safe, solvent and trustless trading of any asset.'}
             </HeroText>
             <CtaContainer>
-              <Cta onlyShowSubscribeButton />
+              <Cta showExplainerAndNewsLetter />
             </CtaContainer>
           </Col>
           <Col xs={0} sm={0} md={12} lg={14}>
