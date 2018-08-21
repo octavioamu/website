@@ -7,7 +7,7 @@ then
   echo "Clearing Dev Bucket Prior To Deployment (Leaving redirects)"
   eval export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_DEV
   eval export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_DEV
-  aws s3 rm s3://dev.website.marketprotocol.io --exclude="telegram" --exclude="discord" --exclude="blog" --exclude="press" --exclude="newsletter"
+  aws s3 rm s3://dev.website.marketprotocol.io --recursive --exclude="telegram" --exclude="discord" --exclude="blog" --exclude="press" --exclude="newsletter"
 elif [[ -v TRAVIS_TAG ]]
 then
   echo "Invalidating CloudFront Cache"
