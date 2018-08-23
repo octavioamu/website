@@ -10,6 +10,7 @@ export const HeroArt = styled.div`
   text-align: center;
   img {
     width: 60%;
+    height: 100%;
 
     @media ${device.desktopS} {
       width: 50%;
@@ -102,7 +103,12 @@ class Hero extends React.Component {
           </Col>
           <Col xs={0} sm={0} md={10} lg={12} xl={12}>
             <HeroArt>
-              <img alt="MARKET partners" src={header} />
+              <img
+                alt="MARKET partners"
+                src={header}
+                width="441"
+                height="720"
+              />
             </HeroArt>
           </Col>
         </Row>

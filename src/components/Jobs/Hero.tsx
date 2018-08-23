@@ -9,6 +9,11 @@ import { Link } from 'react-static';
 export const HeroArt = styled.div`
   width: 100%;
   
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  
   @media ${device.mobileS} and (max-width: 767px) {
     opacity: 0.4
     margin-top: -20%
@@ -98,7 +103,12 @@ class Jobs extends React.Component {
               style={{ height: '100%', textAlign: 'right' }}
             >
               <HeroArt>
-                <img alt="MARKET Protocol jobs" src={header} width="100%" />
+                <img
+                  alt="MARKET Protocol jobs"
+                  src={header}
+                  width="824"
+                  height="665"
+                />
               </HeroArt>
             </Row>
           </Col>

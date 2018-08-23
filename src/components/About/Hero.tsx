@@ -10,6 +10,7 @@ export const HeroArt = styled.div`
   margin-top: 90px;
   img {
     width: 80%;
+    height: 100%;
   }
   
   @media ${device.mobileS} and (max-width: 767px) {
@@ -92,7 +93,7 @@ class Hero extends React.Component {
           </Col>
           <Col xs={0} sm={0} md={10} lg={12} xl={12}>
             <HeroArt>
-              <img alt="about MARKET" src={header} />
+              <img alt="about MARKET" src={header} width="435" height="374" />
             </HeroArt>
           </Col>
         </Row>

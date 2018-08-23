@@ -39,6 +39,8 @@ export const HeroArt = styled.div`
 
   img {
     width: 70%;
+    height: 100%;
+    min-height: 300px;
   }
 
   @media (max-width: ${size.mobileS}) and (max-width: ${size.mobileL}) {
@@ -104,6 +106,8 @@ class Hero extends React.Component<{ text?: string }, {}> {
             <HeroArt>
               <img
                 alt="trade stocks ethereum blockhain derivatives"
+                width="588"
+                height="751"
                 src={heroIllustration}
               />
             </HeroArt>

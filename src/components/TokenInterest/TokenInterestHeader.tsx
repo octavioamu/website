@@ -33,6 +33,7 @@ export const HeroArt = styled.div`
   margin-right: -25x;
   img {
     width: 60%;
+    height: 100%;
     
     @media ${device.tablet} and (max-width: ${size.tabletL}) {
       width: 70%;
@@ -82,7 +83,12 @@ class TokenInterestHeader extends React.Component {
           </Col>
           <Col xs={0} sm={0} md={10} lg={12}>
             <HeroArt>
-              <img alt="MARKET Protocol Token Interest" src={header} />
+              <img
+                alt="MARKET Protocol Token Interest"
+                src={header}
+                width="454"
+                height="590"
+              />
             </HeroArt>
           </Col>
         </Row>
