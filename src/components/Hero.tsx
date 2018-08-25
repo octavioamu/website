@@ -76,7 +76,7 @@ export const HeroText = styled.h1`
 
   @media ${device.tablet} {
     font-size: 30px;
-    margin: -50px 0 0 50px;
+    margin: 0 0 0 50px;
   }
 
   @media ${device.laptop} {
