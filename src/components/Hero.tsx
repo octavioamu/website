@@ -10,6 +10,7 @@ import Cta from '@components/Cta';
 export const CtaContainer = styled.div`
   margin-left: 50px;
   margin-top: 1.5rem;
+  margin-bottom: 100px;
   width: 40%;
 
   @media ${device.mobileS} and (max-width: ${size.mobileL}) {
